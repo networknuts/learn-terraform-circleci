@@ -5,6 +5,12 @@ terraform {
       version = "3.44.0"
     }
   }
+  
+  backend "s3" {
+    bucket = "circle-ci-backend-20211004095447208800000001"
+    key = "terraform/webapp/terraform.tfstate"
+    region = "ap-south-1"
+ }
   required_version = "> 0.14"
 }
 
@@ -12,11 +18,11 @@ provider "aws" {
   region = var.region
 }
 
-backend "s3" {
-  bucket = "circle-ci-backend-20211004095447208800000001"
-  key = "terraform/webapp/terraform.tfstate"
-  region = "ap-south-1"
-}
+# backend "s3" {
+#  bucket = "circle-ci-backend-20211004095447208800000001"
+#  key = "terraform/webapp/terraform.tfstate"
+#  region = "ap-south-1"
+#}
 
 
 resource "random_uuid" "randomid" {}
